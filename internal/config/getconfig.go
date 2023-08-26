@@ -2,6 +2,7 @@ package config
 
 import (
 	"flag"
+	"fmt"
 	"os"
 	"strings"
 
@@ -75,6 +76,14 @@ func readFlags(cfg *Config) {
 	flag.StringVar(&cfg.Logger.LogMode, "logMode", cfg.Logger.LogMode, "Aviable LogMode:stdout,file,empty field")
 	flag.BoolVar(&cfg.Logger.RewriteLog, "rewriteLog", cfg.Logger.RewriteLog, "Overwriting a log file")
 
+	for i := 0; i < len(cfg.Workers); i++ {
+		flag.StringVar(&cfg.Workers[i].Database.DbPort, fmt.Sprintf("dbPort%d", i), cfg.Workers[i].Database.DbPort, fmt.Sprintf("Aviable DbPort for %d worker", i))
+		flag.StringVar(&cfg.Workers[i].Database.DbHost, fmt.Sprintf("dbHost%d", i), cfg.Workers[i].Database.DbHost, fmt.Sprintf("Aviable DbHost for %d worker", i))
+		flag.StringVar(&cfg.Workers[i].Database.DbName, fmt.Sprintf("dbName%d", i), cfg.Workers[i].Database.DbName, fmt.Sprintf("Aviable DbName for %d worker", i))
+		flag.StringVar(&cfg.Workers[i].Database.DbUser, fmt.Sprintf("dbUser%d", i), cfg.Workers[i].Database.DbUser, fmt.Sprintf("Aviable DbUser for %d worker", i))
+		flag.StringVar(&cfg.Workers[i].Database.DbPass, fmt.Sprintf("dbPassword%d", i), cfg.Workers[i].Database.DbPass, fmt.Sprintf("Aviable DbPassword for %d worker", i))
+		flag.BoolVar(&cfg.Workers[i].Database.UseContract, fmt.Sprintf("useContract%d", i), cfg.Workers[i].Database.UseContract, fmt.Sprintf("Aviable UseContract for %d worker", i))
+	}
 	flag.StringVar(&configPath, "configPath", "./", "The configPath parameter")
 	flag.Parse()
 }
