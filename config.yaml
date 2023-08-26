@@ -1,0 +1,39 @@
+logger:
+  logLevel: DEBUG
+  logDir: ./
+  logMode: 
+  rewriteLog: true
+workers:
+  - use: true
+    database:
+      dbPort: 5432
+      dbHost: 127.0.0.1
+      dbName: test1
+      dbUser: test1
+      dbPassword: 0000
+      useContract: true
+    sql:
+      select1: select * from test1
+      update1: update test1 set name = 'test'
+  - use: true
+    database:
+      dbPort: 5432
+      dbHost: 127.0.0.1
+      dbName: test2
+      dbUser: test2
+      dbPassword: 0000
+      useContract: true
+    sql:
+      select1: select * from test2
+      update1: update test2 set name = 'test'
+  - use: true
+    database:
+      dbPort: 5432
+      dbHost: 127.0.0.1
+      dbName: test3
+      dbUser: test3
+      dbPassword: 0000
+      useContract: true
+    sql:
+      select1: select * from test3
+      update1: update test3 set name = 'test'
